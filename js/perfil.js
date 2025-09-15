@@ -24,8 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const btnEditar = $('btnEditar');
   if (btnEditar) {
+    btnEditar.type = 'button'; // evita submit se estiver dentro de um <form>
     btnEditar.addEventListener('click', () => {
-      window.location.href = 'editar-perfil.html';
+      // redireciona para a página de edição dentro de /pages
+      window.location.href = 'editarPerfil.html';
     });
   }
 
