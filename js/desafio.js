@@ -1,3 +1,6 @@
+// ===== /Aluno-MaxFit/js/desafio.js =====
+console.log('desafio.js v2 carregado');
+
 // ===== altura correta no mobile =====
 function fixVh(){ const vh = innerHeight * 0.01; document.documentElement.style.setProperty('--vh', `${vh}px`); }
 fixVh(); addEventListener('resize', fixVh); addEventListener('orientationchange', fixVh);
@@ -26,8 +29,13 @@ let filtro = 'ativos'; // 'todos' | 'ativos' | 'concluidos'
 // ===== init =====
 document.addEventListener('DOMContentLoaded', () => {
   // topo
-  $('btnVoltar')?.addEventListener('click', (e)=>{ e.preventDefault(); if(history.length>1) history.back(); else location.href='../index.html'; });
-  const foto = localStorage.getItem('usuario_foto'); if (foto) $('fotoPerfil').src = foto;
+  $('btnVoltar')?.addEventListener('click', (e)=>{
+    e.preventDefault();
+    if (history.length>1) history.back();
+    else location.href='../index.html';
+  });
+  const foto = localStorage.getItem('usuario_foto');
+  if (foto) $('fotoPerfil').src = foto;
 
   // filtros
   document.querySelectorAll('.chip').forEach(ch=>{
@@ -41,18 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ações
   $('btnCriar').addEventListener('click', ()=> location.href='criardesafio.html');
-  $('btnParticipar').addEventListener('click', ()=>{
-    alert('Em breve você poderá participar de desafios criados por outros usuários (via backend).');
+  // >>> aqui estava o alert — agora vai direto pra página
+  $('btnParticipar').addEventListener('click', ()=> {
+    window.location.href = 'participarTreinos.html';
   });
 
-  // clique nos cards (delegação)
+  // clique nos cards (delegação) -> abre sheet de ações apenas para meus desafios
   $('listaDesafios').addEventListener('click', (e)=>{
     const card = e.target.closest('.card');
     if(!card) return;
     const id = card.dataset.id;
     const origem = card.dataset.origem || '';
     if(origem !== 'eu'){
-      // não deixa editar/concluir/excluir se não for do próprio usuário
       alert('Somente desafios criados por você podem ser editados.');
       return;
     }
@@ -84,7 +92,9 @@ function render(){
 }
 
 function cardHtml(d){
-  const data = d.ateISO ? new Date(d.ateISO).toLocaleDateString('pt-BR',{day:'2-digit',month:'long'}) : '—';
+  const data = d.ateISO
+    ? new Date(d.ateISO).toLocaleDateString('pt-BR',{day:'2-digit',month:'long'})
+    : '—';
   const logo = d.logo || '../img/logo.png';
   const owned = d.origem === 'eu' ? '1' : '0';
   const status = d.status === 'concluido' ? '<span class="badge done">Concluído</span>' : '';
@@ -99,7 +109,9 @@ function cardHtml(d){
   </div>`;
 }
 
-function escapeHtml(s){ return String(s||'').replace(/[&<>]/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c])); }
+function escapeHtml(s){
+  return String(s||'').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+}
 
 // ======= Sheet de ações =======
 function abrirSheetAcoes(id){
@@ -118,9 +130,7 @@ function abrirSheetAcoes(id){
   `;
   document.body.appendChild(wrap);
 
-  wrap.addEventListener('click', (e)=>{
-    if (e.target === wrap) fecharSheetAcoes();
-  });
+  wrap.addEventListener('click', (e)=>{ if (e.target === wrap) fecharSheetAcoes(); });
 
   wrap.querySelectorAll('.sheet-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
