@@ -17,7 +17,7 @@ function saveList(list){
   localStorage.setItem(userKey(), JSON.stringify(list));
 }
 
-// Somente mostramos desafios criados por mim ou que eu esteja participando.
+// Mostramos somente desafios criados por mim ou que eu esteja participando
 const ALLOWED_ORIGINS = ['eu','participando'];
 
 // ===== estado =====
@@ -40,28 +40,32 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ações
-  $('btnCriar').addEventListener('click', ()=> location.href='criarDesafio.html');
+  $('btnCriar').addEventListener('click', ()=> location.href='criardesafio.html');
   $('btnParticipar').addEventListener('click', ()=>{
     alert('Em breve você poderá participar de desafios criados por outros usuários (via backend).');
   });
 
-  // 1x: remove qualquer item que não seja "eu" ou "participando" (ex.: demo/sistema)
-  purgeNotAllowed();
+  // clique nos cards (delegação)
+  $('listaDesafios').addEventListener('click', (e)=>{
+    const card = e.target.closest('.card');
+    if(!card) return;
+    const id = card.dataset.id;
+    const origem = card.dataset.origem || '';
+    if(origem !== 'eu'){
+      // não deixa editar/concluir/excluir se não for do próprio usuário
+      alert('Somente desafios criados por você podem ser editados.');
+      return;
+    }
+    abrirSheetAcoes(id);
+  });
 
   render();
 });
 
-// remove do storage itens com origem não permitida
-function purgeNotAllowed(){
-  const list = loadList();
-  const clean = list.filter(x => ALLOWED_ORIGINS.includes(x.origem));
-  if (clean.length !== list.length) saveList(clean);
-}
-
 // ===== render =====
 function render(){
   const box = $('listaDesafios');
-  let list = loadList().filter(x => ALLOWED_ORIGINS.includes(x.origem)); // segurança extra
+  let list = loadList().filter(x => ALLOWED_ORIGINS.includes(x.origem));
 
   if (filtro === 'ativos')     list = list.filter(x => x.status !== 'concluido');
   if (filtro === 'concluidos') list = list.filter(x => x.status === 'concluido');
@@ -82,14 +86,80 @@ function render(){
 function cardHtml(d){
   const data = d.ateISO ? new Date(d.ateISO).toLocaleDateString('pt-BR',{day:'2-digit',month:'long'}) : '—';
   const logo = d.logo || '../img/logo.png';
+  const owned = d.origem === 'eu' ? '1' : '0';
+  const status = d.status === 'concluido' ? '<span class="badge done">Concluído</span>' : '';
+
   return `
-  <div class="card">
+  <div class="card" data-id="${String(d.id)}" data-origem="${d.origem||''}" data-owned="${owned}">
     <img class="logo" src="${logo}" alt="">
     <div>
-      <div class="ctitle">${escapeHtml(d.titulo || 'Desafio')}</div>
+      <div class="ctitle">${escapeHtml(d.titulo || 'Desafio')} ${status}</div>
       <div class="deadline">Até ${data}</div>
     </div>
   </div>`;
 }
 
 function escapeHtml(s){ return String(s||'').replace(/[&<>]/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c])); }
+
+// ======= Sheet de ações =======
+function abrirSheetAcoes(id){
+  fecharSheetAcoes(); // garante que não duplica
+
+  const wrap = document.createElement('div');
+  wrap.className = 'sheet-backdrop';
+  wrap.innerHTML = `
+    <div class="sheet">
+      <div class="sheet-handle"></div>
+      <button class="sheet-btn" data-act="edit">Editar</button>
+      <button class="sheet-btn" data-act="done">Marcar como concluído</button>
+      <button class="sheet-btn danger" data-act="delete">Excluir</button>
+      <button class="sheet-btn outline" data-act="cancel">Cancelar</button>
+    </div>
+  `;
+  document.body.appendChild(wrap);
+
+  wrap.addEventListener('click', (e)=>{
+    if (e.target === wrap) fecharSheetAcoes();
+  });
+
+  wrap.querySelectorAll('.sheet-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const act = btn.dataset.act;
+      if (act === 'edit'){
+        location.href = `editarDesafio.html?id=${encodeURIComponent(id)}`;
+      } else if (act === 'done'){
+        concluirDesafio(id);
+      } else if (act === 'delete'){
+        excluirDesafio(id);
+      } else {
+        fecharSheetAcoes();
+      }
+    });
+  });
+}
+
+function fecharSheetAcoes(){
+  document.querySelectorAll('.sheet-backdrop').forEach(el=> el.remove());
+}
+
+// ===== Ações =====
+function concluirDesafio(id){
+  const list = loadList();
+  const idx = list.findIndex(d => String(d.id) === String(id));
+  if (idx === -1){ alert('Desafio não encontrado.'); return; }
+  list[idx].status = 'concluido';
+  list[idx].concluidoEmISO = new Date().toISOString();
+  saveList(list);
+  fecharSheetAcoes();
+  render();
+  alert('Desafio marcado como concluído!');
+}
+
+function excluirDesafio(id){
+  if(!confirm('Deseja realmente excluir este desafio?')) return;
+  const list = loadList().filter(d => String(d.id) !== String(id));
+  saveList(list);
+  fecharSheetAcoes();
+  render();
+  alert('Desafio excluído.');
+}
