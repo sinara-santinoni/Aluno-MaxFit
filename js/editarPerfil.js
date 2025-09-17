@@ -85,4 +85,28 @@ document.addEventListener('DOMContentLoaded', () => {
     alert('Perfil atualizado!');
     window.location.href = 'perfil.html';
   });
+
+  // =========================
+  // SAIR DA CONTA (LOGOUT)
+  // =========================
+  $('btnLogout')?.addEventListener('click', ()=>{
+    if(!confirm('Deseja sair da sua conta?')) return;
+
+    // Limpa chaves do usuário/sessão (ajuste os nomes conforme sua auth)
+    const toClear = [];
+    for(let i=0;i<localStorage.length;i++){
+      const k = localStorage.key(i);
+      if(!k) continue;
+      if(k.startsWith('usuario_') || k==='usuario_id' || k==='auth_token' || k==='usuario_logado'){
+        toClear.push(k);
+      }
+    }
+    toClear.forEach(k => localStorage.removeItem(k));
+
+    try{ sessionStorage.clear(); }catch(e){}
+
+    // Redireciona (troque para sua tela de login, se houver)
+    window.location.href = '../index.html';
+  });
+
 });

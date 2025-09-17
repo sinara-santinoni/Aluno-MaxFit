@@ -56,3 +56,16 @@ main{ flex:1; overflow:auto; padding:18px 18px 92px; }
   .bottom-nav{ height:62px; }
   main{ padding-bottom:86px; }
 }
+/* --- Botão sair (topo direito) --- */
+.logout-btn{
+  background:#fff;
+  color:#d9480f;
+  border:2px solid #ffd6bf;
+  border-radius:12px;
+  width:38px; height:38px;
+  display:grid; place-items:center;
+  cursor:pointer;
+}
+.logout-btn ion-icon{ font-size:20px; }
+.logout-btn:active{ transform:scale(.98); }
+

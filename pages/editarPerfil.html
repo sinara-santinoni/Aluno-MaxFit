@@ -12,10 +12,15 @@
   <div class="app">
     <!-- topo -->
     <header>
-      <a class="back" href="perfil.html" id="btnVoltar">
+      <a class="back" href="perfil.html" id="btnVoltar" aria-label="Voltar">
         <ion-icon name="arrow-back-outline"></ion-icon>
       </a>
       <div class="spacer"></div>
+
+      <!-- NOVO: botão sair (topo direito) -->
+      <button class="logout-btn" id="btnLogout" type="button" title="Sair da conta" aria-label="Sair da conta">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </button>
     </header>
 
     <!-- conteúdo -->
