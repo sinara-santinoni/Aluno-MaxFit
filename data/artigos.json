@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "categoria": "treinos",
+    "titulo": "Supino: técnica básica",
+    "resumo": "Guia rápido para executar o supino com segurança.",
+    "thumb": "../img/supino.jpg",
+    "tags": ["peito","iniciante"],
+    "conteudoHtml": "<p>Postura: pés firmes no chão, escápulas retraídas...</p>",
+    "atualizadoISO": "2025-08-30"
+  },
+  {
+    "id": 2,
+    "categoria": "mindset",
+    "titulo": "Consistência vence motivação",
+    "resumo": "Como criar hábitos que sustentam seus objetivos.",
+    "thumb": "../img/habito.jpg",
+    "tags": ["hábitos","psicologia"],
+    "conteudoHtml": "<p>Motivação oscila, hábito sustenta. Comece pequeno...</p>",
+    "atualizadoISO": "2025-09-05"
+  },
+  {
+    "id": 3,
+    "categoria": "saude",
+    "titulo": "Sono e recuperação",
+    "resumo": "Por que dormir bem acelera seus resultados.",
+    "thumb": "../img/sono.jpg",
+    "tags": ["recuperação","saúde"],
+    "conteudoHtml": "<p>Durma 7–9h. Evite telas 1h antes de dormir...</p>",
+    "atualizadoISO": "2025-09-10"
+  }
+]

@@ -4,11 +4,10 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Área de dicas e artigos</title>
-  <link rel="stylesheet" href="/Aluno-MaxFit/styles/dicas-artigos.css">
+  <link rel="stylesheet" href="../styles/dicas-artigos.css">
 </head>
 <body>
   <div class="app">
-    <!-- Topo -->
     <header class="topbar">
       <a class="back" href="suporte.html" id="btnVoltar" aria-label="Voltar">
         <ion-icon name="arrow-back-outline"></ion-icon>
@@ -17,50 +16,38 @@
       <img id="fotoPerfilTop" class="avatar-sm" src="../img/usuario.png" alt="perfil">
     </header>
 
-    <!-- Cabeçalho da seção -->
     <div class="head-row">
       <span class="icon-wrap"><ion-icon name="book-outline"></ion-icon></span>
-      <h2 class="head-title">Area de dicas e artigos</h2>
+      <h2 class="head-title">Área de dicas e artigos</h2>
     </div>
 
-    <!-- Conteúdo -->
     <main class="content">
-      <a class="option-btn" href="dicas-treinos.html">
-        <ion-icon class="opt-ico" name="barbell-outline"></ion-icon>
-        <span class="opt-text">Dicas de treinos</span>
-      </a>
+      <!-- Busca e filtros -->
+      <div class="search-bar">
+        <ion-icon name="search-outline"></ion-icon>
+        <input id="q" type="text" placeholder="Buscar por título, tag...">
+      </div>
+      <div class="chips">
+        <button class="chip active" data-cat="todos">Todos</button>
+        <button class="chip" data-cat="treinos">Treinos</button>
+        <button class="chip" data-cat="mindset">Mindset</button>
+        <button class="chip" data-cat="saude">Saúde</button>
+      </div>
 
-      <a class="option-btn" href="mindset-motivacao.html">
-        <ion-icon class="opt-ico" name="bulb-outline"></ion-icon>
-        <span class="opt-text">Mindset motivação</span>
-      </a>
-
-      <a class="option-btn" href="saude-bem-estar.html">
-        <ion-icon class="opt-ico" name="heart-outline"></ion-icon>
-        <span class="opt-text">Saúde  e Bem estar</span>
-      </a>
+      <!-- Lista -->
+      <section id="lista" class="list"></section>
+      <div id="vazio" class="empty" hidden>Nenhum artigo encontrado.</div>
     </main>
 
-    <!-- Rodapé -->
     <footer class="bottom-nav">
-      <a class="nav-item" href="../index.html">
-        <ion-icon name="home-outline"></ion-icon><span class="nav-label">Início</span>
-      </a>
-      <a class="nav-item" href="treinos.html">
-        <ion-icon name="clipboard-outline"></ion-icon><span class="nav-label">Treinos</span>
-      </a>
-      <a class="nav-item" href="progresso.html">
-        <ion-icon name="checkmark-done-circle-outline"></ion-icon><span class="nav-label">Progresso</span>
-      </a>
-      <a class="nav-item" href="perfil.html">
-        <ion-icon name="person-outline"></ion-icon><span class="nav-label">Perfil</span>
-      </a>
+      <a class="nav-item" href="../index.html"><ion-icon name="home-outline"></ion-icon><span class="nav-label">Início</span></a>
+      <a class="nav-item" href="treinos.html"><ion-icon name="clipboard-outline"></ion-icon><span class="nav-label">Treinos</span></a>
+      <a class="nav-item" href="progresso.html"><ion-icon name="checkmark-done-circle-outline"></ion-icon><span class="nav-label">Progresso</span></a>
+      <a class="nav-item" href="perfil.html"><ion-icon name="person-outline"></ion-icon><span class="nav-label">Perfil</span></a>
     </footer>
   </div>
 
-  <script src="/Aluno-MaxFit/js/dicas-artigos.js" defer></script>
-
-  <!-- Ionicons -->
+  <script src="../js/dicas-artigos.js" defer></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
