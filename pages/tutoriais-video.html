@@ -4,34 +4,38 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tutoriais em vídeo</title>
-  <link rel="stylesheet" href="/Aluno-MaxFit/styles/tutoriais-videos.css">
+  <link rel="stylesheet" href="../styles/tutoriais-videos.css">
 </head>
 <body>
   <div class="app">
-    <!-- Topo -->
     <header class="topbar">
-      <a class="back" href="suporte.html" id="btnVoltar" aria-label="Voltar">
-        <ion-icon name="arrow-back-outline"></ion-icon>
-      </a>
+      <a class="back" href="suporte.html" id="btnVoltar"><ion-icon name="arrow-back-outline"></ion-icon></a>
       <h1 class="title">SUPORTE</h1>
       <img id="fotoPerfilTop" class="avatar-sm" src="../img/usuario.png" alt="perfil">
     </header>
 
-    <!-- Cabeçalho -->
     <div class="head-row">
       <span class="icon-wrap"><ion-icon name="play-circle-outline"></ion-icon></span>
-      <h2 class="head-title">Tutorias em vídeo</h2>
+      <h2 class="head-title">Tutoriais em vídeo</h2>
     </div>
 
-    <!-- Conteúdo -->
     <main class="content">
-      <section id="listaVideos" class="list"></section>
-      <div id="vazio" class="empty" hidden>
-        Nenhum vídeo publicado pelo seu personal ainda.
+      <div class="search-bar">
+        <ion-icon name="search-outline"></ion-icon>
+        <input id="q" type="text" placeholder="Buscar por título, tag...">
       </div>
+
+      <div class="chips">
+        <button class="chip active" data-cat="todos">Todos</button>
+        <button class="chip" data-cat="peito">Peito</button>
+        <button class="chip" data-cat="pernas">Pernas</button>
+        <button class="chip" data-cat="fullbody">Full body</button>
+      </div>
+
+      <section id="lista" class="list"></section>
+      <div id="vazio" class="empty" hidden>Nenhum vídeo encontrado.</div>
     </main>
 
-    <!-- Rodapé -->
     <footer class="bottom-nav">
       <a class="nav-item" href="../index.html"><ion-icon name="home-outline"></ion-icon><span class="nav-label">Início</span></a>
       <a class="nav-item" href="treinos.html"><ion-icon name="clipboard-outline"></ion-icon><span class="nav-label">Treinos</span></a>
@@ -40,21 +44,7 @@
     </footer>
   </div>
 
-  <!-- Modal Player -->
-  <div id="playerModal" class="modal hidden" aria-hidden="true">
-    <div class="modal-backdrop"></div>
-    <div class="modal-body" role="dialog" aria-modal="true">
-      <button id="btnCloseModal" class="close" aria-label="Fechar">
-        <ion-icon name="close-outline"></ion-icon>
-      </button>
-      <div id="playerWrap" class="player-wrap"></div>
-      <div id="playerTitle" class="player-title"></div>
-    </div>
-  </div>
-
-  <script src="/Aluno-MaxFit/js/tutoriais-videos.js" defer></script>
-
-  <!-- Ionicons -->
+  <script src="../js/tutoriais-videos.js" defer></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

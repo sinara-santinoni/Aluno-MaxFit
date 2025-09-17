@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "titulo": "Peck Deck",
+    "categoria": "peito",
+    "thumb": "../img/peckdeck.jpg",
+    "fonte": "youtube",
+    "url": "https://www.youtube.com/watch?v=-SO_MVV-eUE",
+    "duracao": "2:18",
+    "nivel": "iniciante",
+    "descricao": "Execução correta no Peck Deck.",
+    "atualizadoISO": "2025-09-10"
+  },
+  {
+    "id": 2,
+    "titulo": "Leg Press",
+    "categoria": "pernas",
+    "thumb": "../img/legpress.jpg",
+    "fonte": "mp4",
+    "url": "https://www.youtube.com/watch?v=adPY6cd4h58",
+    "duracao": "8:56",
+    "nivel": "iniciante",
+    "descricao": "Técnica segura no leg press.",
+    "atualizadoISO": "2025-09-08"
+  },
+  {
+    "id": 3,
+    "titulo": "Flexão",
+    "categoria": "fullbody",
+    "thumb": "../img/flexao.jpg",
+    "fonte": "youtube",
+    "url": "https://www.youtube.com/watch?v=9ozLIq3Nmkw",
+    "duracao": "5:15",
+    "nivel": "iniciante",
+    "descricao": "Como iniciar nas flexões.",
+    "atualizadoISO": "2025-09-05"
+  }
+]
