@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tutoriais • Vídeo</title>
+  <link rel="stylesheet" href="../styles/video.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="back" href="tutoriais.html" id="btnVoltar" aria-label="Voltar">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </a>
+      <h1 class="title">Tutoriais em vídeo</h1>
+      <img id="fotoPerfilTop" class="avatar-sm" src="../img/usuario.png" alt="perfil">
+    </header>
+
+    <main class="content">
+      <!-- hero -->
+      <div class="hero">
+        <div class="hero-thumb-wrap">
+          <img id="thumb" class="hero-thumb" src="../img/placeholder-video.jpg" alt="thumb">
+        </div>
+        <h2 id="vTitle" class="hero-title">Vídeo</h2>
+      </div>
+
+      <!-- descrição -->
+      <h3 class="sec-title">Descrição</h3>
+      <div id="vDesc" class="desc-card">—</div>
+
+      <!-- link pro vídeo -->
+      <h3 class="sec-title">Vídeo</h3>
+      <a id="watchLink" class="thumb-link" href="#" target="_blank" rel="noopener">
+        <img id="thumb2" src="../img/placeholder-video.jpg" alt="Abrir vídeo">
+        <span class="play-badge"><ion-icon name="play-circle"></ion-icon></span>
+      </a>
+      <a id="watchBtn" class="btn-primary" href="#" target="_blank" rel="noopener">Assistir agora</a>
+
+      <div id="notFound" class="empty" hidden>Vídeo não encontrado.</div>
+    </main>
+
+    <footer class="bottom-nav">
+      <a class="nav-item" href="../index.html"><ion-icon name="home-outline"></ion-icon><span class="nav-label">Início</span></a>
+      <a class="nav-item" href="treinos.html"><ion-icon name="clipboard-outline"></ion-icon><span class="nav-label">Treinos</span></a>
+      <a class="nav-item" href="progresso.html"><ion-icon name="checkmark-done-circle-outline"></ion-icon><span class="nav-label">Progresso</span></a>
+      <a class="nav-item" href="perfil.html"><ion-icon name="person-outline"></ion-icon><span class="nav-label">Perfil</span></a>
+    </footer>
+  </div>
+
+  <script src="../js/video.js" defer></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
